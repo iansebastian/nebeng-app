@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="app.min.css">
+    <style>
+      /* TODO */
+    </style>
+  </head>
+
+  <body>
+    <div class="app-page" data-page="home">
+      <div class="app-topbar">
+        <div class="app-title">Home page</div>
+      </div>
+      <div class="app-content">
+        <div class="app-section">
+          <div class="app-button" data-target="form">Mau Pulang</div>
+          <div class="app-button" data-target="page2">Cari Tebengan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-page" data-page="page2">
+      <div class="app-topbar">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Cari Tebengan</div>
+      </div>
+      <div class="app-content">
+        <input type="search" class="app-input" placeholder="Search Destination" id="searchBox">
+        <div id="products">
+        </div>
+      </div>
+    </div>
+
+    <div class="app-page" data-page="form">
+      <div class="app-topbar">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Mau Pulang</div>
+      </div>
+      <form class="app-content" action="" method="post">
+        <input class="app-input" placeholder="Nama? Co: Ucok">
+        <input class="app-input" placeholder="Tujuan Pulang? Co: Dago">
+        <input class="app-input" placeholder="Waktu Pulang? Co: 17.00">
+        <input class="app-input" placeholder="Bisa Ditebeng Berapa Orang? Co: 2">
+        <div class="app-button app-submit">Submit</div>
+      </form>
+    </div>
+
+    <script src="jquery.min.js"></script>
+    <script src="app.min.js"></script>
+    <script>
+      App.controller('home', function (page) {
+        // put stuff here
+      });
+
+      App.controller('page2', function (page) {
+        // put stuff here
+        $(document).ready(function(){
+
+          var _url ="https://my-json-server.typicode.com/gkuwanto/pwaapi/cards"
+
+          $.get(_url , function(data){
+            $.each(data, function(key, items){
+              var dataResults = ''
+              dataResults += "<div class = 'app-section'> <ul class='app-list'> <li> Nama: "+items.names+ "</li> <li> Tujuan: "+items.destination +"</li> <li> Waktu: "+items.departure +"</li> <li> Jumlah Kursi Kosong: "+items.passanger + " orang </li> </ul> </div>";
+              $(dataResults).appendTo('#products')
+            }) 
+          })
+          $("#searchBox").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#products .app-section").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        })
+      });
+
+      try {
+        App.restore();
+      } catch (err) {
+        App.load('home');
+      }
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
