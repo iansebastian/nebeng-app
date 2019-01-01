@@ -7,12 +7,28 @@
     <style>
       /* TODO */
     </style>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="https://kmb.unit.itb.ac.id/wp-content/uploads/2017/12/cropped-logo-2.png"/>
   </head>
 
   <body>
-    <div class="app-page" data-page="home">
+    <div  class="app-page" data-page="home">
       <div class="app-topbar">
-        <div class="app-title">Home page</div>
+        <div class="app-title">KMB Dhammanano</div>
+      </div>
+      <div class="app-content">
+        <input type="search" class="app-input" placeholder="Search..." id="searchHome">
+        <div class="app-section">
+          <div class="app-button" data-target="nebeng">Nebeng</div>
+          <div class="app-button" data-target="soon">Coming soon</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-page" data-page="nebeng">
+      <div class="app-topbar">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Nebeng</div>
       </div>
       <div class="app-content">
         <div class="app-section">
@@ -34,6 +50,18 @@
       </div>
     </div>
 
+    <div class="app-page" data-page="soon">
+      <div class="app-topbar">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Coming soon</div>
+      </div>
+      <div class="app-content">
+        <div class="app-section">
+          <p>Sisanya belum dibuat</p>
+        </div>
+      </div>
+    </div>
+
     <div class="app-page" data-page="form">
       <div class="app-topbar">
         <div class="app-button left" data-back data-autotitle></div>
@@ -50,49 +78,6 @@
 
     <script src="jquery.min.js"></script>
     <script src="app.min.js"></script>
-    <script>
-      App.controller('home', function (page) {
-        // put stuff here
-      });
-
-      App.controller('page2', function (page) {
-        // put stuff here
-        $(document).ready(function(){
-
-          var _url ="https://my-json-server.typicode.com/gkuwanto/pwaapi/cards"
-
-          $.get(_url , function(data){
-            $.each(data, function(key, items){
-              var dataResults = ''
-              dataResults += "<div class = 'app-section'> <ul class='app-list'> <li> Nama: "+items.names+ "</li> <li> Tujuan: "+items.destination +"</li> <li> Waktu: "+items.departure +"</li> <li> Jumlah Kursi Kosong: "+items.passanger + " orang </li> </ul> </div>";
-              $(dataResults).appendTo('#products')
-            }) 
-          })
-          $("#searchBox").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#products .app-section").filter(function() {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-          });
-        })
-      });
-
-      try {
-        App.restore();
-      } catch (err) {
-        App.load('home');
-      }
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-          });
-        });
-      }
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>

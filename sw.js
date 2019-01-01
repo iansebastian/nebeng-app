@@ -3,7 +3,8 @@ var urlsToCache = [
   '/',
   '/app.min.css',
   '/app.min.js',
-  '/jquery.min.js'
+  '/jquery.min.js',
+  '/main.js'
 ];
 
 self.addEventListener('install', function(event) {
