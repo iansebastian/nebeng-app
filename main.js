@@ -52,7 +52,7 @@ try {
   App.load('home');
 }
 
-
+//PWA service worker (buat cache localdata)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
