@@ -1,5 +1,5 @@
 App.controller('home', function (page) {
-  // put stuff here
+  // search feature
   $(document).ready(function(){
     $('#searchHome').on("keyup", function(){
       var value = $(this).val().toLowerCase();
@@ -10,16 +10,23 @@ App.controller('home', function (page) {
   })
 });
 App.controller('nebeng', function (page) {
-
+  //stuffs
 });
+
+
 App.controller('form', function (page) {
   //stuffs
 });
+
+
 App.controller('page2', function (page) {
+  //jquery
   $(document).ready(function(){
 
+    //link to back-end ( temporary mock-server json )
     var _url ="https://my-json-server.typicode.com/gkuwanto/pwaapi/cards"
 
+    //get and append the data from back-end to div with id="products"
     $.get(_url , function(data){
       $.each(data, function(key, items){
         var dataResults = ''
@@ -27,6 +34,8 @@ App.controller('page2', function (page) {
         $(dataResults).appendTo('#products')
       }) 
     })
+
+    //after getting all of the data, implement search feature to filter
     $("#searchBox").on("keyup", function() {
       var value = $(this).val().toLowerCase();
       $("#products .app-section").filter(function() {
@@ -36,11 +45,14 @@ App.controller('page2', function (page) {
   })
 });
 
+//set default page as 'home'
 try {
   App.restore();
 } catch (err) {
   App.load('home');
 }
+
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {

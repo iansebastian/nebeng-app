@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My App</title>
+    <title>KMB App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="app.min.css">
-    <style>
-      /* TODO */
-    </style>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    
+    <!-- manifest.json for pwa -->
     <link rel="manifest" href="manifest.json">
+    
+    <!-- favicon link to image -->
     <link rel="icon" type="image/png" href="https://kmb.unit.itb.ac.id/wp-content/uploads/2017/12/cropped-logo-2.png"/>
   </head>
 
   <body>
+    <!-- Home Page -->
     <div  class="app-page" data-page="home">
       <div class="app-topbar">
         <div class="app-title">KMB Dhammanano</div>
@@ -25,6 +30,7 @@
       </div>
     </div>
 
+    <!-- Nebeng Page -->
     <div class="app-page" data-page="nebeng">
       <div class="app-topbar">
         <div class="app-button left" data-back data-autotitle></div>
@@ -37,31 +43,20 @@
         </div>
       </div>
     </div>
-
+    <!-- list nebeng -->
     <div class="app-page" data-page="page2">
       <div class="app-topbar">
         <div class="app-button left" data-back data-autotitle></div>
         <div class="app-title">Cari Tebengan</div>
       </div>
       <div class="app-content">
-        <input type="search" class="app-input" placeholder="Search Destination" id="searchBox">
+        <input type="search" class="app-input" placeholder="Search..." id="searchBox">
         <div id="products">
         </div>
       </div>
     </div>
 
-    <div class="app-page" data-page="soon">
-      <div class="app-topbar">
-        <div class="app-button left" data-back data-autotitle></div>
-        <div class="app-title">Coming soon</div>
-      </div>
-      <div class="app-content">
-        <div class="app-section">
-          <p>Sisanya belum dibuat</p>
-        </div>
-      </div>
-    </div>
-
+    <!-- mau pulang page -->
     <div class="app-page" data-page="form">
       <div class="app-topbar">
         <div class="app-button left" data-back data-autotitle></div>
@@ -76,8 +71,41 @@
       </form>
     </div>
 
+    <!-- coming soon page -->
+    <div class="app-page" data-page="soon">
+      <div class="app-topbar">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Coming soon</div>
+      </div>
+      <div class="app-content">
+        <div class="app-section">
+          <p>Sisanya belum dibuat</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- uncomment below to get template page, dont forget to add a link to that page-->
+
+      <!--
+          <div class="app-page" data-page="default">
+          <div class="app-topbar">
+            <div class="app-button left" data-back data-autotitle></div>
+            <div class="app-title">Insert Title</div>
+          </div>
+          <div class="app-content">
+            <div class="app-section">
+              Insert Content Here
+            </div>
+          </div>
+        </div>
+      -->
+
+    <!-- dependencies for app.js framework -->
     <script src="jquery.min.js"></script>
     <script src="app.min.js"></script>
+
+    <!-- main script file -->
     <script src="main.js"></script>
   </body>
 </html>
